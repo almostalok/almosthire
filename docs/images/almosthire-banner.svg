@@ -1,0 +1,83 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="50%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#18181b" stop-opacity="0.4" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="60" result="blur" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="420" fill="url(#bg-grad)" rx="16" />
+  <circle cx="1050" cy="120" r="180" fill="#10b981" fill-opacity="0.12" filter="url(#glow)" />
+  <circle cx="150" cy="350" r="150" fill="#06b6d4" fill-opacity="0.08" filter="url(#glow)" />
+  <rect x="0.5" y="0.5" width="1199" height="419" rx="15.5" stroke="#27272a" />
+
+  <!-- Grid accent lines -->
+  <path d="M0 80 H1200 M0 160 H1200 M0 240 H1200 M0 320 H1200" stroke="#27272a" stroke-opacity="0.3" stroke-dasharray="4 4" />
+  <path d="M200 0 V420 M400 0 V420 M600 0 V420 M800 0 V420 M1000 0 V420" stroke="#27272a" stroke-opacity="0.3" stroke-dasharray="4 4" />
+
+  <!-- Top Pill -->
+  <g transform="translate(60, 48)">
+    <rect width="320" height="28" rx="14" fill="#064e3b" fill-opacity="0.6" stroke="#059669" stroke-width="1" />
+    <circle cx="16" cy="14" r="5" fill="#34d399" />
+    <text x="32" y="18" fill="#a7f3d0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="1">DETERMINISTIC MERIT PROTOCOL v2.4</text>
+  </g>
+
+  <!-- Title & Subtitle -->
+  <text x="60" y="125" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">
+    AlmostHire
+  </text>
+  <text x="295" y="125" fill="url(#brand-grad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="-1">
+    Merit Leaderboard
+  </text>
+  <text x="60" y="165" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400">
+    Eliminating recruitment black boxes, ghosting, and opaque rejections through live cohort standing,
+  </text>
+  <text x="60" y="190" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400">
+    cryptographic blind grading, public stage cutoffs, and guaranteed 48-hour review SLAs.
+  </text>
+
+  <!-- 4 Feature Cards -->
+  <g transform="translate(60, 240)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="250" height="120" rx="12" fill="url(#card-grad)" stroke="#27272a" stroke-width="1" />
+    <text x="18" y="32" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">01 / LIVE LEADERBOARD</text>
+    <text x="18" y="58" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Pseudonymous Ranks</text>
+    <text x="18" y="80" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Real-time candidate standing with 5-stage progress steppers.</text>
+    <rect x="18" y="98" width="60" height="4" rx="2" fill="#10b981" />
+
+    <!-- Card 2 -->
+    <rect x="270" y="0" width="250" height="120" rx="12" fill="url(#card-grad)" stroke="#27272a" stroke-width="1" />
+    <text x="288" y="32" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">02 / BLIND GRADING</text>
+    <text x="288" y="58" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Redacted Pedigree Bias</text>
+    <text x="288" y="80" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Candidate name, college, and past employers hidden in Stages 1 &amp; 2.</text>
+    <rect x="288" y="98" width="60" height="4" rx="2" fill="#0284c7" />
+
+    <!-- Card 3 -->
+    <rect x="540" y="0" width="250" height="120" rx="12" fill="url(#card-grad)" stroke="#27272a" stroke-width="1" />
+    <text x="558" y="32" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">03 / ANTI-GHOSTING SLA</text>
+    <text x="558" y="58" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Active Watchdog Timers</text>
+    <text x="558" y="80" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Guaranteed review windows with automated Director escalations.</text>
+    <rect x="558" y="98" width="60" height="4" rx="2" fill="#f59e0b" />
+
+    <!-- Card 4 -->
+    <rect x="810" y="0" width="270" height="120" rx="12" fill="url(#card-grad)" stroke="#27272a" stroke-width="1" />
+    <text x="828" y="32" fill="#c084fc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">04 / Z-SCORE CALIBRATION</text>
+    <text x="828" y="58" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">Interviewer Normalization</text>
+    <text x="828" y="80" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11">Evaluators deviating &gt; 1.5σ from baseline flagged for calibration review.</text>
+    <rect x="828" y="98" width="60" height="4" rx="2" fill="#9333ea" />
+  </g>
+</svg>

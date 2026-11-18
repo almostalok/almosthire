@@ -1,0 +1,70 @@
+<svg width="1200" height="300" viewBox="0 0 1200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rb-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" rx="16" fill="url(#rb-bg)" stroke="#27272a" />
+
+  <text x="40" y="40" fill="#f4f4f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800">
+    ROLE-BASED ACCESS CONTROL (RBAC) &amp; DATA PRIVACY BOUNDARIES
+  </text>
+  <text x="40" y="60" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">
+    Instantaneous persona switching via persistent top-level navigation. Strict boundary enforcement per role.
+  </text>
+
+  <!-- 4 Persona Cards -->
+  <!-- 1. Candidate -->
+  <g transform="translate(40, 85)">
+    <rect width="260" height="185" rx="12" fill="#18181b" stroke="#059669" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#10b981" fill-opacity="0.2" />
+    <text x="21" y="32" fill="#34d399" font-family="monospace" font-size="12">🎓</text>
+    <text x="52" y="33" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">CANDIDATE (APPLICANT)</text>
+    <text x="18" y="68" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Live Cohort Rank (#4) &amp; Percentile</text>
+    <text x="18" y="90" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• "YOU" Highlight with Pseudonym Peers</text>
+    <text x="18" y="112" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• 5-Axis Radar Benchmark vs Top 10%</text>
+    <text x="18" y="134" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Structured Remarks (Strengths &amp; Gaps)</text>
+    <text x="18" y="156" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• 24-Hour Score Review / Appeal Action</text>
+  </g>
+
+  <!-- 2. Evaluator -->
+  <g transform="translate(325, 85)">
+    <rect width="260" height="185" rx="12" fill="#18181b" stroke="#0284c7" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#06b6d4" fill-opacity="0.2" />
+    <text x="21" y="32" fill="#38bdf8" font-family="monospace" font-size="12">⚖️</text>
+    <text x="52" y="33" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">EVALUATOR STUDIO</text>
+    <text x="18" y="68" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Blind PII Redaction in Stages 1 &amp; 2</text>
+    <text x="18" y="90" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Anti-Anchoring Bias Score Lock</text>
+    <text x="18" y="112" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Locked Weighted Rubric Sliders</text>
+    <text x="18" y="134" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Mandatory 150-Character Feedback</text>
+    <text x="18" y="156" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Blocks Vague "Not a Fit" Rejections</text>
+  </g>
+
+  <!-- 3. Recruiter -->
+  <g transform="translate(610, 85)">
+    <rect width="260" height="185" rx="12" fill="#18181b" stroke="#d97706" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#f59e0b" fill-opacity="0.2" />
+    <text x="21" y="32" fill="#fbbf24" font-family="monospace" font-size="12">📊</text>
+    <text x="52" y="33" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">RECRUITER COMMAND</text>
+    <text x="18" y="68" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Funnel Attrition Visualizer</text>
+    <text x="18" y="90" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Z-Score Interviewer Calibration</text>
+    <text x="18" y="112" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Flags Harsh/Lenient Graders (&gt;1.5σ)</text>
+    <text x="18" y="134" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• What-If Cutoff Simulator</text>
+    <text x="18" y="156" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• 1-Click Offer Release &amp; Appeal Queue</text>
+  </g>
+
+  <!-- 4. Public -->
+  <g transform="translate(895, 85)">
+    <rect width="265" height="185" rx="12" fill="#18181b" stroke="#7c3aed" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#8b5cf6" fill-opacity="0.2" />
+    <text x="21" y="32" fill="#a78bfa" font-family="monospace" font-size="12">🌐</text>
+    <text x="52" y="33" fill="#a78bfa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">PUBLIC PRE-APPLY</text>
+    <text x="18" y="68" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Pre-Apply Open Funnel Transparency</text>
+    <text x="18" y="90" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Live Historical Turnaround (31.4h avg)</text>
+    <text x="18" y="112" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Public Cutoff &amp; Weight Matrix</text>
+    <text x="18" y="134" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Open Seats Remaining Tracker</text>
+    <text x="18" y="156" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">• Proof-of-Work Intake Modal</text>
+  </g>
+</svg>
