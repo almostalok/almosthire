@@ -1,160 +1,268 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { AppProvider, useApp } from '@/context/AppContext';
-import Navbar from '@/components/Navbar';
-import KPIStrip from '@/components/KPIStrip';
-import LeaderboardTable from '@/components/LeaderboardTable';
-import CandidateDetailDrawer from '@/components/CandidateDetailDrawer';
+import Sidebar from '@/components/Sidebar';
+import RightSidebar from '@/components/RightSidebar';
+import AstraLeaderboard from '@/components/AstraLeaderboard';
 import EvaluatorStudio from '@/components/EvaluatorStudio';
 import RecruiterDashboard from '@/components/RecruiterDashboard';
 import PublicTransparencyView from '@/components/PublicTransparencyView';
+import CandidateDetailDrawer from '@/components/CandidateDetailDrawer';
 import NotificationToaster from '@/components/NotificationToaster';
 import { 
-  Sparkles, 
-  ArrowRight, 
-  ShieldCheck, 
   Award, 
-  HelpCircle,
-  Clock,
-  CheckCircle2,
-  Lock,
-  Zap
+  UserCheck, 
+  Briefcase, 
+  Eye, 
+  ChevronLeft, 
+  ChevronRight, 
+  SlidersHorizontal,
+  X
 } from 'lucide-react';
 
 function DashboardContent() {
-  const { role, currentUserCandidate, setRole, setSelectedCandidateId } = useApp();
+  const { role, setRole, currentUserCandidate, setSelectedCandidateId } = useApp();
+
+  // Unified Filter State shared across Center Feed & Right Sidebar
+  const [sortBy, setSortBy] = useState<'rank' | 'score' | 'sla'>('rank');
+  const [statusFilter, setStatusFilter] = useState<'ALL' | 'OFFER_ZONE' | 'ADVANCING' | 'NOT_SELECTED'>('ALL');
+  const [stageFilter, setStageFilter] = useState<number | 'ALL'>('ALL');
+  const [selectedStack, setSelectedStack] = useState<string | null>(null);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+  const handleResetFilters = () => {
+    setSortBy('rank');
+    setStatusFilter('ALL');
+    setStageFilter('ALL');
+    setSelectedStack(null);
+  };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans">
-      {/* Top Sticky Navigation */}
-      <Navbar />
+    <div className="min-h-screen bg-[#090a0c] text-zinc-100 flex flex-row overflow-x-hidden font-sans">
+      {/* 1. Left Sidebar Navigation (matching Astra) */}
+      <Sidebar />
 
-      {/* Main Role Content */}
-      <main className="flex-1 pb-16">
-        {role === 'candidate' && (
-          <>
-            {/* Candidate KPI Bar */}
-            <KPIStrip />
-
-            {/* Personalized Candidate Banner */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-zinc-900 to-cyan-950/30 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center font-bold font-mono">
-                    #4
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-zinc-100 flex items-center gap-1.5">
-                      <span>Alex Rivera (YOU) — Live Cohort Rank #4</span>
-                      <span className="text-[10px] font-mono px-2 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">
-                        785 / 1000 PTS
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-zinc-400 mt-0.5">
-                      You are 81 points behind the Offer Zone threshold. Your Stage 5 Bar-Raiser scorecard is being finalized by panel reviewers.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setSelectedCandidateId(currentUserCandidate.id)}
-                    className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition-colors"
-                  >
-                    <Award className="w-3.5 h-3.5" />
-                    <span>Open My Scorecard & Radar</span>
-                  </button>
-
-                  <button
-                    onClick={() => setRole('evaluator')}
-                    className="px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium flex items-center gap-1.5 transition-colors border border-zinc-700"
-                  >
-                    <span>Grade Stage 5 as Evaluator →</span>
-                  </button>
-                </div>
-              </div>
+      {/* 2. Main Center Content View */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        {/* Top Minimal Perspective Indicator Strip for Tablet/Mobile */}
+        <div className="bg-[#0e0f12] border-b border-[#1c1e22] px-4 py-2 flex items-center justify-between xl:hidden">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
+              Persona:
+            </span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setRole('candidate')}
+                className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                  role === 'candidate' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-zinc-500'
+                }`}
+              >
+                Candidate (YOU)
+              </button>
+              <button
+                onClick={() => setRole('evaluator')}
+                className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                  role === 'evaluator' ? 'bg-cyan-500/20 text-cyan-300 font-bold' : 'text-zinc-500'
+                }`}
+              >
+                Evaluator
+              </button>
+              <button
+                onClick={() => setRole('recruiter')}
+                className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                  role === 'recruiter' ? 'bg-amber-500/20 text-amber-300 font-bold' : 'text-zinc-500'
+                }`}
+              >
+                Recruiter
+              </button>
+              <button
+                onClick={() => setRole('public')}
+                className={`px-2 py-1 rounded-lg text-xs font-medium ${
+                  role === 'public' ? 'bg-purple-500/20 text-purple-300 font-bold' : 'text-zinc-500'
+                }`}
+              >
+                Public
+              </button>
             </div>
+          </div>
 
-            {/* Live Cohort Leaderboard */}
-            <LeaderboardTable />
-          </>
+          <button
+            onClick={() => setIsMobileFiltersOpen(true)}
+            className="p-1.5 rounded-lg bg-[#16181c] border border-[#23262d] text-zinc-300 text-xs flex items-center gap-1"
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Filters</span>
+          </button>
+        </div>
+
+        {/* Dynamic Center View Routing */}
+        {role === 'candidate' && (
+          <AstraLeaderboard
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+            stageFilter={stageFilter}
+            setStageFilter={setStageFilter}
+            selectedStack={selectedStack}
+            onOpenMobileFilters={() => setIsMobileFiltersOpen(true)}
+          />
         )}
 
         {role === 'evaluator' && (
-          <>
-            <EvaluatorStudio />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-              <div className="border-t border-zinc-800/80 pt-6">
-                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                  Live Cohort Context
-                </h3>
-                <LeaderboardTable />
+          <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto w-full">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <button
+                  onClick={() => setRole('candidate')}
+                  className="text-xs text-blue-400 hover:underline flex items-center gap-1 mb-1 font-semibold"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span>Back to Cohort Leaderboard</span>
+                </button>
+                <h1 className="text-2xl font-extrabold text-zinc-100 tracking-tight">
+                  Evaluator Studio
+                </h1>
               </div>
             </div>
-          </>
+            <EvaluatorStudio />
+          </div>
         )}
 
         {role === 'recruiter' && (
-          <>
-            <RecruiterDashboard />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-              <div className="border-t border-zinc-800/80 pt-4">
-                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                  Cohort Candidate Master Ledger (Real Identity Visible)
-                </h3>
-                <LeaderboardTable />
+          <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto w-full">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <button
+                  onClick={() => setRole('candidate')}
+                  className="text-xs text-blue-400 hover:underline flex items-center gap-1 mb-1 font-semibold"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span>Back to Cohort Leaderboard</span>
+                </button>
+                <h1 className="text-2xl font-extrabold text-zinc-100 tracking-tight">
+                  Recruiter &amp; Calibration Command
+                </h1>
               </div>
             </div>
-          </>
+            <RecruiterDashboard />
+          </div>
         )}
 
         {role === 'public' && (
-          <>
-            <PublicTransparencyView />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-              <div className="border-t border-zinc-800/80 pt-6">
-                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                  Live Anonymized Cohort Leaderboard Preview
-                </h3>
-                <LeaderboardTable />
+          <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto w-full">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <button
+                  onClick={() => setRole('candidate')}
+                  className="text-xs text-blue-400 hover:underline flex items-center gap-1 mb-1 font-semibold"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <span>Back to Cohort Leaderboard</span>
+                </button>
+                <h1 className="text-2xl font-extrabold text-zinc-100 tracking-tight">
+                  Pre-Apply Open Transparency Protocol
+                </h1>
               </div>
             </div>
-          </>
+            <PublicTransparencyView />
+          </div>
         )}
       </main>
 
-      {/* Slide-over Candidate Detail / Transparency Drawer */}
+      {/* 3. Right Sidebar Filters & Calibration Pane (matching Astra) */}
+      <RightSidebar
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+        stageFilter={stageFilter}
+        setStageFilter={setStageFilter}
+        selectedStack={selectedStack}
+        setSelectedStack={setSelectedStack}
+        onResetFilters={handleResetFilters}
+      />
+
+      {/* Slide-over Candidate Detail / Transparency Scorecard Drawer */}
       <CandidateDetailDrawer />
 
-      {/* Floating Notifications */}
+      {/* Floating Reactive Toast Notifications */}
       <NotificationToaster />
 
-      {/* Enterprise Platform Footer */}
-      <footer className="border-t border-zinc-900 bg-zinc-950 py-8 text-xs text-zinc-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[10px]">
-              AH
+      {/* Mobile Filters Slide-over */}
+      {isMobileFiltersOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end xl:hidden bg-black/70 backdrop-blur-sm animate-in fade-in">
+          <div className="w-80 bg-[#0d0e11] border-l border-[#1c1e22] h-full flex flex-col p-4 shadow-2xl overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1c1e22]">
+              <span className="font-bold text-sm text-zinc-100">Filters</span>
+              <button
+                onClick={() => setIsMobileFiltersOpen(false)}
+                className="text-zinc-400 hover:text-zinc-200"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
-            <span className="font-semibold text-zinc-400">
-              AlmostHire Transparent Merit Hiring Protocol
-            </span>
-            <span className="text-zinc-700">•</span>
-            <span>Deterministic Scoring Engine v2.4</span>
-          </div>
 
-          <div className="flex items-center gap-4 text-zinc-500 text-[11px]">
-            <span>Zero Recruitment Ghosting</span>
-            <span>•</span>
-            <span>Blind Pedigree Redaction</span>
-            <span>•</span>
-            <span>48h SLA Watchdog</span>
-            <span>•</span>
-            <span>Anti-Anchoring Bias Panel</span>
+            <div className="py-4 space-y-4">
+              <div>
+                <span className="block text-xs font-bold text-zinc-400 mb-2">Sort by</span>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <button
+                    onClick={() => { setSortBy('rank'); setIsMobileFiltersOpen(false); }}
+                    className={`p-2 rounded-lg ${sortBy === 'rank' ? 'bg-[#23262d] text-white font-bold' : 'bg-[#15171b] text-zinc-400'}`}
+                  >
+                    Recommended
+                  </button>
+                  <button
+                    onClick={() => { setSortBy('score'); setIsMobileFiltersOpen(false); }}
+                    className={`p-2 rounded-lg ${sortBy === 'score' ? 'bg-[#23262d] text-white font-bold' : 'bg-[#15171b] text-zinc-400'}`}
+                  >
+                    Highest score
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <span className="block text-xs font-bold text-zinc-400 mb-2">Stage Gate</span>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <button
+                    onClick={() => { setStageFilter('ALL'); setIsMobileFiltersOpen(false); }}
+                    className="p-2 rounded-lg bg-[#15171b] text-zinc-300"
+                  >
+                    All Stages
+                  </button>
+                  <button
+                    onClick={() => { setStageFilter(2); setIsMobileFiltersOpen(false); }}
+                    className="p-2 rounded-lg bg-[#15171b] text-zinc-300"
+                  >
+                    Stage 2 (Code)
+                  </button>
+                  <button
+                    onClick={() => { setStageFilter(4); setIsMobileFiltersOpen(false); }}
+                    className="p-2 rounded-lg bg-[#15171b] text-zinc-300"
+                  >
+                    Stage 4 (Design)
+                  </button>
+                  <button
+                    onClick={() => { setStageFilter(5); setIsMobileFiltersOpen(false); }}
+                    className="p-2 rounded-lg bg-[#15171b] text-zinc-300"
+                  >
+                    Stage 5 (Offer)
+                  </button>
+                </div>
+              </div>
+
+              <button
+                onClick={handleResetFilters}
+                className="w-full py-2 rounded-xl bg-zinc-800 text-zinc-200 text-xs font-semibold"
+              >
+                Reset All Filters
+              </button>
+            </div>
           </div>
         </div>
-      </footer>
+      )}
     </div>
   );
 }
